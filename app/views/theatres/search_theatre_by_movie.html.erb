@@ -1,0 +1,20 @@
+<h1 align="center"> All Theatres</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Address</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @theatre.each do |theatre| %>
+      <tr>
+        <td><%= theatre.name %></td>
+        <td><%= theatre.address %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

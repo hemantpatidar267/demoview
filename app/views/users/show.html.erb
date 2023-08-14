@@ -2,14 +2,14 @@
 <hr>
 
 <p>
-   <strong>Name: </strong> <%= @current_user.name %><br />
-   <strong>Email :</strong> <%= @current_user.email %><br />
-   <strong>Password :</strong> <%= @current_user.password %><br />
-   <strong>Role :</strong> <%= @current_user.role %>
+   <strong>Name: </strong> <%= @user.name %><br />
+   <strong>Email :</strong> <%= @user.email %><br />
+   <strong>Password :</strong> <%= @user.password %><br />
+   <strong>Role :</strong> <%= @user.role %>
 </p>
 
 <hr />
 
 <%= link_to 'Back', :back %></br>
 <%= link_to 'edit user', edit_user_path %></br>
-<%= link_to "Destroy",@current_user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<%= link_to "Destroy",@user, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>

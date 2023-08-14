@@ -1,0 +1,10 @@
+<div><%= flash[:notice] %></div>
+<%= form_with  url: '/screens', method: :get do |form| %>
+  <div>
+    <%= form.label :theatre_id %><br>
+    <%= form.text_field :id %>
+  </div>
+  <div>
+    <%= form.submit 'search' %>
+  </div>
+<% end %>

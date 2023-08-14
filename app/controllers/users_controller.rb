@@ -1,16 +1,16 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_user
   def create
-    @current_user = User.new(user_params)
-    if @current_user.save
-      redirect_to @current_user
+    @user = User.new(user_params)
+    if @user.save
+      redirect_to @user
     else
       render :new
     end
   end
 
   def new
-    @current_user = User.new
+    @user = User.new
   end
 
   def wellcome
@@ -23,25 +23,25 @@ class UsersController < ApplicationController
   end
 
   def show
-    @current_user = User.find(params[:id])
+    @user = @current_user
   end
 
   def update
-    @current_user = User.find(params[:id])
-    if @current_user.update(user_params)
-      redirect_to @current_user
+    @user = @current_user
+    if @user.update(user_params)
+      redirect_to @user
     else
       render :edit
     end
   end
 
   def edit
-    @current_user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def destroy
-    @current_user = User.find(params[:id])
-    @current_user.destroy
+    @user = @current_user
+    @user.destroy
     redirect_to new_user_path
   end
 
