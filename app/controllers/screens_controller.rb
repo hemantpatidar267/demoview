@@ -30,21 +30,27 @@ class ScreensController < ApplicationController
   end
 
   def search_screen_by_theatre
-  end
-
-
-  def index
     @theatre = Theatre.find(params[:id])
     @screen = @theatre.screens
   rescue
     flash[:notice] = "Not found"
-    redirect_to search_screen_by_theatre_path
+    redirect_to screens_path
+  end
+
+
+  def index
+    @screen = Screen.all
   end
 
   def destroy
-    @screen = @current_user.screens.find(params[:id])
+
+    @screen = @current_user.screens.find_by_id(params[:id])
     @screen.destroy
     redirect_to screens_path
+  rescue
+    flash[:notice] = "you cant delete this screen"
+    redirect_to screen_path
+
   end
 
   private

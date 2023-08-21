@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_14_120152) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_16_060853) do
   create_table "movies", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
@@ -40,6 +40,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_120152) do
     t.index ["user_id"], name: "index_theatres_on_user_id"
   end
 
+  create_table "tickets", force: :cascade do |t|
+    t.string "alphanumeric_id"
+    t.integer "number_of_tickets"
+    t.integer "user_id", null: false
+    t.integer "theatre_id", null: false
+    t.integer "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id"], name: "index_tickets_on_movie_id"
+    t.index ["theatre_id"], name: "index_tickets_on_theatre_id"
+    t.index ["user_id"], name: "index_tickets_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -53,4 +66,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_120152) do
   add_foreign_key "screens", "movies"
   add_foreign_key "screens", "theatres"
   add_foreign_key "theatres", "users"
+  add_foreign_key "tickets", "movies"
+  add_foreign_key "tickets", "theatres"
+  add_foreign_key "tickets", "users"
 end

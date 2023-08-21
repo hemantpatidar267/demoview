@@ -1,0 +1,31 @@
+<h1 align="center">tickets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Alphanumeric_id</th>
+      <th>Number_of_tickets</th>
+      <th>Theatre_id</th>
+      <th>movie_id</th>
+      <th>user_id</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tickets.each do |ticket| %>
+      <tr>
+        <td><%= ticket.alphanumeric_id %></td>
+        <td><%= ticket.number_of_tickets %></td>
+        <td><%= ticket.theatre_id %></td>
+        <td><%= ticket.movie_id %></td>
+        <td><%= ticket.user_id %></td>
+        <td><%= link_to 'show', ticket %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= button_to 'create ticket', new_ticket_path, method: :get %>
+

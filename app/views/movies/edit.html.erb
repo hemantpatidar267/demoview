@@ -1,2 +1,7 @@
-<h1>Movies#edit</h1>
-<p>Find me in app/views/movies/edit.html.erb</p>
+<h1 align="center">Edit movie</h1>
+
+<hr>
+<hr>
+
+<%= render "form", movie: @movie %>
+<%= button_to 'logout', logout_path, method: :delete %>

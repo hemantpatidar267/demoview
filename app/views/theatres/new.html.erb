@@ -1,9 +1,37 @@
-<h1 align="center">Create theatre</h1>
 
-<hr>
-<hr>
+
+<nav class="navbar">
+  <div class="navbar-buttons">
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
+  </div>
+
+</nav>
+
+<div align="center" class="abc">
+
+<%= form_with model: @theatre do |form| %>
+
+  <div class="form-group">
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :Address %><br>
+    <%= form.text_area :address  %>
+  </div>
+
+  <%= form.submit class:"btn btn-primary"%>
+
+<% end %>
+</div>
+
+
+
+
+
 
 <%= render "form", theatre: @theatre %>
 <br>
 
-<%= link_to 'Back', :back %>
+<div align="center"><%= link_to 'Back', :back %></div>

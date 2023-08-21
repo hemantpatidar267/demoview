@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_user
+  before_action :authenticate_user, except: [:wellcome, :new, :create]
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to @user
+      redirect_to root_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -13,36 +13,48 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
+  def index
+    @user = User.all
+  end
+
   def wellcome
+
   end
 
-  def customer
-  end
-
-  def owner
+  def front
+    # @current_user
   end
 
   def show
-    @user = @current_user
+    @user = User.find(params[:id])
   end
-
-  def update
-    @user = @current_user
-    if @user.update(user_params)
-      redirect_to @user
-    else
-      render :edit
-    end
-  end
-
   def edit
     @user = User.find(params[:id])
   end
 
+  def update
+    # debugger
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      puts @user.errors.full_messages
+      render :edit
+    end
+  end
+
+
+
   def destroy
-    @user = @current_user
-    @user.destroy
-    redirect_to new_user_path
+    @user = User.find(params[:id])
+    if @user.id == @current_user.id
+      @user.destroy
+      redirect_to root_path
+    else
+      flash[:notice] = 'You are not authorized'
+      redirect_to  users_path
+    end
+
   end
 
   private

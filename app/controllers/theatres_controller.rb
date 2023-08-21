@@ -1,4 +1,13 @@
 class TheatresController < ApplicationController
+
+  def index
+    if @current_user.role == 'owner'
+      @theatre= @current_user.theatres
+    else
+      @theatre = Theatre.all
+    end
+  end
+
   def new
     @theatre = Theatre.new
   end
@@ -30,14 +39,13 @@ class TheatresController < ApplicationController
   end
 
   def search_theatre_by_movie
-    @movie = Movie.find(params[:movie_id])
+    @movie = Movie.find(params[:id])
     @theatre = @movie.theatres
-    render :search_theatre_by_movie
+  rescue
+    flash[:notice] = "Not found"
+    redirect_to theatres_path
   end
 
-  def index
-    @theatre = Theatre.all
-  end
 
   private
 

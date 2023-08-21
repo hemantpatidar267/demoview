@@ -1,4 +1,4 @@
-<h1 align="center">movie</h1>
+<h1 align="center"> Available movie</h1>
 
 <table>
   <thead>
@@ -23,6 +23,20 @@
 </table>
 <br>
 
-<%= link_to 'BACK', :back %>
 
 
+</br>
+
+<div><%= flash[:notice] %></div>
+<%= form_with  url: '/movies', method: :get do |form| %>
+  <div>
+    <%= form.label :search %><br>
+    <%= form.text_field :query %>
+  </div>
+  <div>
+    <%= form.submit 'enter' %>
+  </div>
+<% end %>
+</br>
+
+<%= button_to 'create movie', new_movie_path, method: :get if @current_user.role == 'owner' %>

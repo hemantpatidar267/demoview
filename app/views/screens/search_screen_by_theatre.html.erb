@@ -1,10 +1,86 @@
-<div><%= flash[:notice] %></div>
-<%= form_with  url: '/screens', method: :get do |form| %>
-  <div>
-    <%= form.label :theatre_id %><br>
-    <%= form.text_field :id %>
+<style>
+
+  .navbar {
+  background-color: #212529;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
+
+h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: green;
+  color: white;
+}
+</style>
+
+
+<nav class="navbar">
+  <div class="navbar-buttons">
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
   </div>
-  <div>
-    <%= form.submit 'search' %>
-  </div>
-<% end %>
+  <div><%= flash[:notice] %></div>
+  <form class="form-inline", action="/search_screen_by_theatre", method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="Theatre_id", name="id" >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+
+<table class="table">
+
+
+      <h1 >Screens</h1>
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Seating_capacity</th>
+      <th scope="col">Theatre_id</th>
+      <th scope="col">Movie_id</th>
+      <th scope="col">Show data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @screen.each do |screen| %>
+      <tr>
+        <td><%= screen.id %></td>
+        <td><%= screen.seating_capacity %></td>
+        <td><%= screen.theatre_id %></td>
+        <td><%= screen.movie_id %></td>
+        <td><%= link_to 'show', screen %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+
+
+

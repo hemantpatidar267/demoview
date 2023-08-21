@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <style>
+    body {
+      background-color: #6fcbd9;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .login-container {
+      background: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+    input[type="submit"]{
+      background-color: #255aed; /* Green */
+      border: none;
+      color: white;
+      padding: 4px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    input[type="submit"]:hover{
+       background-color: #082167;
+    }
+
+
+    .flash-notice {
+      color: red;
+    }
+    span{
+      color:red ;
+    }
+  </style>
+</head>
+<body>
+ <div class="login-container">
+    <div class="flash-notice"><%= flash[:notice] %></div>
+    <%= form_with model: user do |form| %>
+      <p>
+        <%= form.label 'Name:'%><br>
+        <%= form.text_field :name, id: 'name' %>
+        <% user.errors.full_messages_for(:name).each do |message| %>
+          <span><%= message %></span>
+        <% end %>
+      </p>
+      <p>
+        <%= form.label 'Email:'%><br>
+        <%= form.email_field :email, id: 'email' %>
+        <% user.errors.full_messages_for(:email).each do |message| %>
+          <span><%= message %></span>
+        <% end %>
+      </p>
+      <p>
+        <%= form.label 'Password:'%><br>
+        <%= form.password_field :password, id: 'password' %>
+        <% user.errors.full_messages_for(:password).each do |message| %>
+          <span><%= message %></span>
+        <% end %>
+      </p>
+
+      <div>
+        <%= form.label :Role %><br>
+        <%= form.radio_button :role, "owner" %>
+        <%= form.label :owner %>
+        <%= form.radio_button :role, "customer" %>
+        <%= form.label :customer %>
+        <% user.errors.full_messages_for(:role).each do |message| %>
+          <span><%= message %></span>
+        <% end %>
+      </div>
+      <p>
+        <%= form.submit 'Register user'%>
+      </p>
+    <% end %>
+
+
+
+    </div>
+</body>
+</html>
+

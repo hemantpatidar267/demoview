@@ -1,2 +1,14 @@
-<h1>Movies#show</h1>
-<p>Find me in app/views/movies/show.html.erb</p>
+<h1 align="center">Show Movie</h1>
+<hr>
+
+<p>
+   <strong>Name: </strong> <%= @movie.name %><br />
+   <strong>Start_date :</strong> <%= @movie.start_date %><br />
+   <strong>End_date :</strong> <%= @movie.end_date %><br />
+</p>
+
+<hr />
+
+<%= link_to 'Back', :back %></br>
+<%= link_to 'edit screen', edit_movie_path if @current_user.role == 'owner' %></br>
+

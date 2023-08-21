@@ -1,0 +1,68 @@
+<style>
+
+  .navbar {
+  background-color:#5b6066;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button {
+  background-color: #000;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
+</style>
+
+<% if @current_user.role == 'owner' %>
+<body class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path '1.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+ <nav class="navbar">
+
+
+  <h1 class="navbar-title">Owner</h1>
+   <div class="navbar-buttons">
+  <%= button_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
+  <%= button_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
+  <%= button_to 'All screen', screens_path, method: :get, class: 'navbar-button' %>
+  <%= button_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
+  <%= button_to 'logout', logout_path, method: :delete, class: 'navbar-button' %>
+</div>
+
+</nav>
+
+</body>
+<% elsif @current_user.role == 'customer' %>
+  <nav class="navbar">
+  <h1 class="navbar-title">Customer</h1>
+  <div class="navbar-buttons">
+
+  <%= button_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
+  <%= button_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
+  <%= button_to 'All screen', search_screen_by_theatre_path, method: :get, method: :get, class: 'navbar-button' %>
+  <%= button_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
+  <%= button_to 'All tickets', tickets_path, method: :get, class: 'navbar-button'  %>
+  <%= button_to 'logout', logout_path, method: :delete, class: 'navbar-button'  %>
+</div>
+
+</nav>
+
+<% end %>
+
+

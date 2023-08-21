@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  alphanumeric_id: MyString
+  number_of_tickets: 1
+  user: one
+  theatre: one
+  movie: one
+
+two:
+  alphanumeric_id: MyString
+  number_of_tickets: 1
+  user: two
+  theatre: two
+  movie: two

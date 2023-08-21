@@ -1,21 +1,47 @@
-<%= form_with model: theatre do |form| %>
-  <div>
-    <%= form.label :name %><br>
-    <%= form.text_field :name %>
-    <% theatre.errors.full_messages_for(:name).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+<style>
 
-  <div>
-    <%= form.label :address %><br>
-    <%= form.text_area :address %>
-    <% theatre.errors.full_messages_for(:address).each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-  </div>
+  .navbar {
+  background-color: #212529;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
 
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+
+
+a {
+    color: white;
+    text-decoration: none;
+    background-color: #007bff;
+}
+
+.abc{
+    font-weight: bold;
+    font-size: 25px;
+  }
+</style>
+
+
+

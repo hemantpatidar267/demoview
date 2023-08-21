@@ -1,2 +1,18 @@
-<h1>Screens#show</h1>
-<p>Find me in app/views/screens/show.html.erb</p>
+<div><%= flash[:notice] %></div>
+
+<h1 align="center">Show screen</h1>
+<hr>
+
+<p>
+   <strong>id: </strong> <%= @screen.id %><br />
+   <strong>Seating_capacity: </strong> <%= @screen.seating_capacity %><br />
+   <strong>Theatre_id :</strong> <%= @screen.theatre_id %><br />
+   <strong>Movie_id :</strong> <%= @screen.movie_id %><br />
+</p>
+
+<hr />
+
+<%= link_to 'edit theatre', edit_screen_path if @current_user.role == 'owner' %></br>
+<%= link_to 'Back', :back %></br>
+<%= button_to "Destroy", @screen, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } if @current_user.role == 'owner '%>
+

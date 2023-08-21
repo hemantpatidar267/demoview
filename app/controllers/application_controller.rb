@@ -6,10 +6,10 @@ include JsonWebToken
     raise if @user.nil?
     if @user.role == 'customer'
       session[:current_user] = jwt_encode(email: @user.email)
-      redirect_to customer_path
+      redirect_to front_path
     elsif @user.role == 'owner'
-      redirect_to owner_path
       session[:current_user] = jwt_encode(email: @user.email)
+      redirect_to front_path
     else
       raise
     end
