@@ -8,7 +8,7 @@ class MoviesController < ApplicationController
     if @movie.save
       redirect_to @movie
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -21,11 +21,11 @@ class MoviesController < ApplicationController
   end
 
   def update
-    @movie = @current_user.movies.find(params[:id])
+    @movie = Movie.find(params[:id])
     if @movie.update(movie_params)
       redirect_to @movie
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

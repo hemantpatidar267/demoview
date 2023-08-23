@@ -1,4 +1,108 @@
 <style>
+  .abc{
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .navbar {
+  background-color: #000;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
+td{
+  font-size: bolder;
+}
+
+h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: green;
+  color: white;
+}
+.ab{
+  color: red;
+  padding: 8px 12px;
+  font-size: 25px;
+}
+</style>
+
+
+<nav class="navbar">
+  <div class="navbar-buttons">
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
+  </div>
+
+</nav>
+
+<section class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path 'cba.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<table class="table">
+
+
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">User_id</th>
+      <th scope="col">screen_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @screen.each do |screen| %>
+      <tr>
+        <td><%= screen.theatre.id %></td>
+        <td><%= screen.theatre.name %></td>
+        <td><%= screen.theatre.address %></td>
+        <td><%= screen.theatre.user_id %></td>
+        <td><%= screen.id %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+    <div class="ab"><%= flash[:notice] %></div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
 
   .navbar {
   background-color: #212529;
@@ -58,15 +162,17 @@ h1{
       <th scope="col">Name</th>
       <th scope="col">Address</th>
       <th scope="col">User_id</th>
+      <th scope="col">screen_id</th>
     </tr>
   </thead>
   <tbody>
-    <% @theatre.each do |theatre| %>
+    <% @screen.each do |screen| %>
       <tr>
-        <td><%= theatre.id %></td>
-        <td><%= theatre.name %></td>
-        <td><%= theatre.address %></td>
-        <td><%= theatre.user_id %></td>
+        <td><%= screen.theatre.id %></td>
+        <td><%= screen.theatre.name %></td>
+        <td><%= screen.theatre.address %></td>
+        <td><%= screen.theatre.user_id %></td>
+        <td><%= screen.id %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,7 +1,7 @@
 <style>
 
   .navbar {
-  background-color: #212529;
+  background-color: #56471b;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -16,15 +16,6 @@
   display: flex;
   gap: 10px;
 }
-.navbar-button {
-  background-color: #0062cc;
-  color: #FFFFFF;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  text-decoration: none;
-  cursor: pointer;
-}
 .navbar-button1 {
   background-color: #0062cc;
   color: #FFFFFF;
@@ -35,58 +26,57 @@
   text-decoration: none;
   cursor: pointer;
 }
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
 .navbar-button:hover {
   background-color: indigo;
 }
+.abc{
 
-h1{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: green;
-  color: white;
-}
+    font-size: 25px;
+  }
+.xyz{
+    color: #000;
+    font-weight: bold;
+
+
+  }
+
+
+
 </style>
-
 
 <nav class="navbar">
   <div class="navbar-buttons">
-     <%= link_to 'Home', front_path, method: :get, class: 'navbar-button' %>
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
   </div>
   <div class="navbar-buttons">
      <%= button_to 'Edit theatre', edit_user_path, method: :get, class: 'navbar-button1' %>
   </div>
-   <div class="navbar-buttons">
-      <%= button_to "Destroy", user_path, method: :delete, class: 'navbar-button', data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-   </div>
-
-
 </nav>
 
+<div><%= flash[:notice] %></div>
 
-<table class="table">
+
+<section class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path 'cba.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<p align="center" class="abc">
+   <strong class="xyz">Name: </strong> <%= @user.name %><br />
+   <strong class="xyz">Email: </strong> <%= @user.email %><br />
+   <strong class="xyz">Password :</strong> <%= @user.password %><br />
+   <strong class="xyz">Role :</strong> <%= @user.role %><br />
+   <%= link_to 'Back', :back %></br>
+</p>
+</section>
 
 
-      <h1 >Show Theatres</h1>
 
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Password</th>
-      <th scope="col">Role</th>
 
-    </tr>
-  </thead>
-  <tbody>
-      <tr>
-        <td><%= @user.name %></td>
-        <td><%= @user.email %></td>
-        <td><%= @user.password %></td>
-        <td><%= @user.role %></td>
-      </tr>
-  </tbody>
-</table>
-
-<%= link_to 'Back', :back %></br>
 

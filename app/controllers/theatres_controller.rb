@@ -17,7 +17,7 @@ class TheatresController < ApplicationController
     if @theatre.save
       redirect_to @theatre
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -34,13 +34,13 @@ class TheatresController < ApplicationController
     if @theatre.update(theatre_params)
       redirect_to @theatre
     else
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def search_theatre_by_movie
-    @movie = Movie.find(params[:id])
-    @theatre = @movie.theatres
+    @screen =Screen.where(movie_id: params[:id])
+    raise if @screen.empty?
   rescue
     flash[:notice] = "Not found"
     redirect_to theatres_path

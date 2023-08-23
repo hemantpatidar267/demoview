@@ -5,7 +5,7 @@
   }
 
   .navbar {
-  background-color: #6e4907;
+  background-color: #000;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -42,6 +42,11 @@ h1{
   justify-content: center;
   background: green;
   color: white;
+}
+.ab{
+  color: red;
+  padding: 8px 12px;
+  font-size: 25px;
 }
 </style>
 
@@ -84,6 +89,8 @@ h1{
   </tbody>
 </table>
 <%= button_to 'create screen', new_screen_path, method: :get, class: 'navbar-button' if @current_user.role == 'owner'%>
+
+    <div class="ab"><%= flash[:notice] %></div>
 
 </section>
 

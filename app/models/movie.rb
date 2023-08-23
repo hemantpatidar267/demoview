@@ -1,9 +1,9 @@
 class Movie < ApplicationRecord
-  has_many :screens
-  belongs_to :theatres
-  belongs_to :user, dependent: :destroy
-  has_many :tickets
   has_many :theatres, through: :screens
+  has_many :screens
+  has_many :tickets
+  belongs_to :user
+
 
   validates :name , presence: true
   validates :start_date , presence: true

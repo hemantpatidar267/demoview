@@ -1,7 +1,7 @@
 <style>
 
   .navbar {
-  background-color:#5b6066;
+  background-color:#0a5935;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -49,7 +49,10 @@
 
 </body>
 <% elsif @current_user.role == 'customer' %>
-  <nav class="navbar">
+<body class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path '1.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+ <nav class="navbar">
+
   <h1 class="navbar-title">Customer</h1>
   <div class="navbar-buttons">
 
@@ -62,6 +65,7 @@
 </div>
 
 </nav>
+</body>
 
 <% end %>
 

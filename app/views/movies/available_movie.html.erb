@@ -1,42 +1,105 @@
-<h1 align="center"> Available movie</h1>
+<style>
+  .abc{
+    font-weight: bold;
+    font-size: 25px;
+  }
 
-<table>
-  <thead>
+  .navbar {
+  background-color: #6e4907;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
+td{
+  font-size: bolder;
+}
+
+h1{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: green;
+  color: white;
+}
+</style>
+
+
+<nav class="navbar">
+  <div class="navbar-buttons">
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
+  </div>
+  <form class="form-inline", action="/movies", method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="movie", name="query" >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+
+<div><%= flash[:notice] %></div>
+
+<section class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path 'cba.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<table class="table">
+
+
+
+  <thead class="thead-dark">
     <tr>
-      <th>Name</th>
-      <th>Start_date</th>
-      <th>End_date</th>
-      <th colspan="3"></th>
+      <th scope="col">id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Start date</th>
+      <th scope="col">End date</th>
+      <th scope="col">Show data</th>
     </tr>
   </thead>
-
   <tbody>
     <% @movie.each do |movie| %>
       <tr>
-        <td><%= movie.name %></td>
-        <td><%= movie.start_date %></td>
-        <td><%= movie.end_date%></td>
-        <td><%= link_to 'show', movie %>
+        <td class = "abc"><%= movie.id %></td>
+        <td class = "abc"><%= movie.name %></td>
+        <td class = "abc"><%= movie.start_date %></td>
+        <td class = "abc"><%= movie.end_date %></td>
+        <td class = "abc"><%= link_to 'show', movie %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
-<br>
+<%= button_to 'create movie', new_movie_path, method: :get, class: 'navbar-button' if @current_user.role == 'owner'%>
+
+</section>
 
 
 
-</br>
 
-<div><%= flash[:notice] %></div>
-<%= form_with  url: '/movies', method: :get do |form| %>
-  <div>
-    <%= form.label :search %><br>
-    <%= form.text_field :query %>
-  </div>
-  <div>
-    <%= form.submit 'enter' %>
-  </div>
-<% end %>
-</br>
 
-<%= button_to 'create movie', new_movie_path, method: :get if @current_user.role == 'owner' %>
+
+
+
+
+
+
+
+
+
+

@@ -8,7 +8,7 @@ class ScreensController < ApplicationController
     if @screen.save
       redirect_to @screen
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -32,6 +32,7 @@ class ScreensController < ApplicationController
   def search_screen_by_theatre
     @theatre = Theatre.find(params[:id])
     @screen = @theatre.screens
+    raise if @screen.empty?
   rescue
     flash[:notice] = "Not found"
     redirect_to screens_path

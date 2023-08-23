@@ -1,14 +1,72 @@
-<h1 align="center">Show Movie</h1>
-<hr>
+<style>
 
-<p>
-   <strong>Name: </strong> <%= @movie.name %><br />
-   <strong>Start_date :</strong> <%= @movie.start_date %><br />
-   <strong>End_date :</strong> <%= @movie.end_date %><br />
+  .navbar {
+  background-color: #56471b;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+.navbar-title {
+  font-size: 24px;
+  margin: 0;
+}
+.navbar-buttons {
+  display: flex;
+  gap: 10px;
+}
+.navbar-button1 {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  margin-left: 900px;
+  padding: 8px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button {
+  background-color: #0062cc;
+  color: #FFFFFF;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.navbar-button:hover {
+  background-color: indigo;
+}
+.abc{
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+
+</style>
+
+<nav class="navbar">
+  <div class="navbar-buttons">
+     <%= button_to 'Home', front_path, method: :get, class: 'navbar-button' %>
+  </div>
+  <div class="navbar-buttons">
+     <%= button_to 'Edit screen', edit_movie_path, method: :get, class: 'navbar-button1'  if @current_user.role == 'owner' %>
+  </div>
+</nav>
+
+
+<div><%= flash[:notice] %></div>
+
+<section class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path 'cba.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<p align="center" class="abc">
+  <strong>Name: </strong> <%= @movie.id%><br />
+  <strong>Name: </strong> <%= @movie.name %><br />
+  <strong>Start_date :</strong> <%= @movie.start_date %><br />
+  <strong>End_date :</strong> <%= @movie.end_date %><br />
+  <%= link_to 'Back', :back %></br>
 </p>
+</section>
 
-<hr />
-
-<%= link_to 'Back', :back %></br>
-<%= link_to 'edit screen', edit_movie_path if @current_user.role == 'owner' %></br>
 

@@ -1,7 +1,11 @@
 <style>
+  .abc{
+    font-weight: bold;
+    font-size: 25px;
+  }
 
   .navbar {
-  background-color: #212529;
+  background-color: #000;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
@@ -28,16 +32,16 @@
 .navbar-button:hover {
   background-color: indigo;
 }
-
-h1{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: green;
-  color: white;
+td{
+  font-size: bolder;
 }
-</style>
+.ab{
+  color: red;
+  padding: 8px 12px;
+  font-size: 25px;
+}
 
+</style>
 
 <nav class="navbar">
   <div class="navbar-buttons">
@@ -49,12 +53,9 @@ h1{
   </form>
 </nav>
 
-
+<section class="vh-100 bg-image"
+  style="background-image: url(<%= asset_path 'cba.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
 <table class="table">
-
-
-      <h1 >Theatres</h1>
-
   <thead class="thead-dark">
     <tr>
       <th scope="col">id</th>
@@ -79,12 +80,7 @@ h1{
 <%= button_to 'create theatre', new_theatre_path, method: :get, class: 'navbar-button' if @current_user.role == 'owner'%>
 
 
-
-
-
-
-
-
-
+<div class="ab"><%= flash[:notice] %></div>
+</section>
 
 
