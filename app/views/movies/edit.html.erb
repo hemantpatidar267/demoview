@@ -34,6 +34,12 @@
                   <% end %>
                 </div>
 
+                <div class="form-outline mb-4">
+                  <%= form.label :image, class: "form-label" %><br>
+                  <%= form.file_field :image, class: "form-control form-control-lg" %>
+                </div>
+
+
                 <div class="d-flex justify-content-center">
                   <%= form.submit "Register", class: "btn btn-success btn-block btn-lg gradient-custom-4 text-body" %>
                 <div>

@@ -4,6 +4,7 @@ class ScreensController < ApplicationController
   end
 
   def create
+    debugger
     @screen = Screen.new(screen_params)
     if @screen.save
       redirect_to @screen

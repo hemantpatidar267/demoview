@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :theatres, dependent: :destroy
 
-  has_many :movies
+  has_many :movies, dependent: :destroy
 
   has_many :tickets, dependent: :destroy
 

@@ -23,6 +23,7 @@ class UsersController < ApplicationController
 
   def front
     # @current_user
+    @movie = Movie.all
   end
 
   def show

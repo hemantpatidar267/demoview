@@ -1,12 +1,20 @@
 <style>
 
   .navbar {
-  background-color:#0a5935;
+  background-color:#343a40;
   color: #FFFFFF;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 18px 20px;
+}
+.navbar1{
+  background-color:#171f27;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
 }
 .navbar-title {
   font-size: 24px;
@@ -17,56 +25,197 @@
   gap: 10px;
 }
 .navbar-button {
-  background-color: #000;
+  background-color: #151d24;
   color: #FFFFFF;
   border: none;
   padding: 8px 12px;
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
+  font-size: 14px;
 }
-.navbar-button:hover {
-  background-color: indigo;
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 40px;
 }
+  .logout:hover {
+    color: navy;
+  }
+.abc{
+  background-color: #e23c26;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  margin-right: 16px;
+  font-size: 15px;
+
+}
+.form-inline{
+  position: absolute;
+  left: 250px;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.flex-container1 > div {
+  border-radius: 15px ;
+  border: 2px solid black;
+  background-color: #F1F1F1;
+  height:360px;
+  width: 300px;
+  margin: 45px;
+/*  padding: 10px;*/
+  text-align: center;
+  line-height: 75px;
+  font-size: 15px;
+}
+.ab{
+  padding: 15px 45px;
+  font-size: 30px;
+  font-weight: bold;
+
+}
+.hp {
+    vertical-align: middle;
+    border-style: none;
+
+
+  border-radius: 15px ;
+
+  background-color: #F1F1F1;
+  height:360px;
+  width: 300px;
+  margin: 45px;
+/*  padding: 10px;*/
+  text-align: center;
+  line-height: 75px;
+  font-size: 15px;
+
+}
+.movie{
+ margin-left:125px;
+ margin-top: -35px;
+ text-transform: uppercase;
+}
+
 </style>
 
 <% if @current_user.role == 'owner' %>
-<body class="vh-100 bg-image"
-  style="background-image: url(<%= asset_path '1.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<body>
  <nav class="navbar">
+  <div class="container">
+    <a class="logo" href="#">
+      <img src="/images/bookmyshow-logo-vector.png"height="45">
+    </a>
+  </div>
+  <form class="form-inline", action="/movies", method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="movie", name="query" >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <div>
+    <%= button_to 'logout', logout_path, method: :delete, class: "abc"%>
+  </div>
+ </nav>
+ <nav class="navbar1">
+    <div class="navbar-buttons">
+      <%= link_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
+      <%= link_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
+      <%= link_to 'All screen', screens_path, method: :get, class: 'navbar-button' %>
+      <%= link_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
+    </div>
+  </nav>
+  <div><%= flash[:notice] %></div>
+
+  <div class="ab">Recommended Movies</div>
 
 
-  <h1 class="navbar-title">Owner</h1>
-   <div class="navbar-buttons">
-  <%= button_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
-  <%= button_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
-  <%= button_to 'All screen', screens_path, method: :get, class: 'navbar-button' %>
-  <%= button_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
-  <%= button_to 'logout', logout_path, method: :delete, class: 'navbar-button' %>
-</div>
+  <div class="flex-container ">
+    <% @movie.each do |movie| %>
+     <div>
+      <%= image_tag movie.image ,class: "hp" %>
+      <div class="movie">
 
-</nav>
+        <strong><%= movie.name %></strong>
+      </div>
+
+     </div>
+
+    <% end %>
+
+
 
 </body>
+
+
+
 <% elsif @current_user.role == 'customer' %>
-<body class="vh-100 bg-image"
-  style="background-image: url(<%= asset_path '1.jpg' %>); background-repeat: no-repeat;  background-size: cover;">
+<body>
  <nav class="navbar">
+  <div class="container">
+    <a class="logo" href="#">
+      <img src="/images/bookmyshow-logo-vector.png"height="45">
+    </a>
+  </div>
+  <form class="form-inline", action="/movies", method="get">
+    <input class="form-control mr-sm-2" type="search" placeholder="movie", name="query" >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <div>
+    <%= button_to 'logout', logout_path, method: :delete, class: "abc"%>
+  </div>
+ </nav>
+ <nav class="navbar1">
+    <div class="navbar-buttons">
+      <%= link_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
+      <%= link_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
+      <%= link_to 'All screen', screens_path, method: :get, class: 'navbar-button' %>
+      <%= link_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
+    </div>
+  </nav>
+  <div><%= flash[:notice] %></div>
 
-  <h1 class="navbar-title">Customer</h1>
-  <div class="navbar-buttons">
+  <div class="ab">Recommended Movies</div>
 
-  <%= button_to 'Status', user_path(@current_user), method: :get, class: 'navbar-button'  %>
-  <%= button_to 'All theatre', theatres_path, method: :get, class: 'navbar-button' %>
-  <%= button_to 'All screen', search_screen_by_theatre_path, method: :get, method: :get, class: 'navbar-button' %>
-  <%= button_to 'available movie', available_movie_path, method: :get, class: 'navbar-button' %>
-  <%= button_to 'All tickets', tickets_path, method: :get, class: 'navbar-button'  %>
-  <%= button_to 'logout', logout_path, method: :delete, class: 'navbar-button'  %>
-</div>
 
-</nav>
+  <div class="flex-container ">
+    <% @movie.each do |movie| %>
+     <div>
+      <%= image_tag movie.image ,class: "hp" %>
+      <div class="movie">
+
+        <strong><%= movie.name %></strong>
+
+      </div>
+
+     </div>
+
+    <% end %>
+
+
+
+
 </body>
+
 
 <% end %>
 
+
+<div class="container my-5">
+
+  <footer class="text-center text-lg-start" style="background-color: #343a40;">
+
+
+    <!-- Copyright -->
+    <div class="text-center text-white p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+      © 2020 Copyright:
+      <a class="text-white" href="http://127.0.0.1:3000/front/">Bookmyshow.com</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+
+</div>
 
